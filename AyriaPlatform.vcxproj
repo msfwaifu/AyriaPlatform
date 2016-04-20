@@ -189,6 +189,7 @@
     <ClInclude Include="Source\Configuration\Macros.h" />
     <ClInclude Include="Source\Configuration\Steamsettings.h" />
     <ClInclude Include="Source\Configuration\Warnings.h" />
+    <ClInclude Include="Source\Exports\Steamexports.h" />
     <ClInclude Include="Source\Steam\CSteamID.h" />
     <ClInclude Include="Source\Steam\Interfacemanager.h" />
     <ClInclude Include="Source\Steam\Interfaces\All.h" />
@@ -205,6 +206,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Configuration\Steamsettings.cpp" />
     <ClCompile Include="Source\DllMain.cpp" />
+    <ClCompile Include="Source\Exports\Steamexports.cpp" />
     <ClCompile Include="Source\Steam\Interfacemanager.cpp" />
     <ClCompile Include="Source\Steam\Interfaces\SteamApps.cpp" />
     <ClCompile Include="Source\Steam\Interfaces\SteamFriends.cpp" />

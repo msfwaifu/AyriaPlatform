@@ -124,7 +124,7 @@ void Setmapbyname(eInterfaceType Type, const char *Name)
 {
     Interfacemap[Type] = Interfacemanager::Fetchinterface(Name);
 }
-void Interfacemanager::Initialize(const char *Filepath, uint32_t ApplicationID)
+void Interfacemanager::Initialize(uint32_t ApplicationID)
 {
     static bool Mapcreated = false;
     if (!Mapcreated)
