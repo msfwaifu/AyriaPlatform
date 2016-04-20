@@ -205,6 +205,7 @@
     <ClCompile Include="Source\Configuration\Steamsettings.cpp" />
     <ClCompile Include="Source\DllMain.cpp" />
     <ClCompile Include="Source\Steam\Interfacemanager.cpp" />
+    <ClCompile Include="Source\Steam\Interfaces\SteamFriends.cpp" />
     <ClCompile Include="Source\Steam\Interfaces\SteamGameserver.cpp" />
     <ClCompile Include="Source\Steam\Interfaces\SteamMatchmaking.cpp" />
     <ClCompile Include="Source\Steam\Interfaces\SteamNetworking.cpp" />

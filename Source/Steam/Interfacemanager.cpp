@@ -93,6 +93,22 @@ void Createmaps()
     CreateInterface(SteamGameserver011, STEAM_GAMESERVER);
     CreateInterface(SteamGameserver012, STEAM_GAMESERVER);
 
+    CreateInterface(SteamFriends001, STEAM_FRIENDS);
+    CreateInterface(SteamFriends002, STEAM_FRIENDS);
+    CreateInterface(SteamFriends003, STEAM_FRIENDS);
+    CreateInterface(SteamFriends004, STEAM_FRIENDS);
+    CreateInterface(SteamFriends005, STEAM_FRIENDS);
+    CreateInterface(SteamFriends006, STEAM_FRIENDS);
+    CreateInterface(SteamFriends007, STEAM_FRIENDS);
+    CreateInterface(SteamFriends008, STEAM_FRIENDS);
+    CreateInterface(SteamFriends009, STEAM_FRIENDS);
+    CreateInterface(SteamFriends010, STEAM_FRIENDS);
+    CreateInterface(SteamFriends011, STEAM_FRIENDS);
+    CreateInterface(SteamFriends012, STEAM_FRIENDS);
+    CreateInterface(SteamFriends013, STEAM_FRIENDS);
+    CreateInterface(SteamFriends014, STEAM_FRIENDS);
+    CreateInterface(SteamFriends015, STEAM_FRIENDS);
+
     // TODO(Convery): Create the interfaces here as they are added.
 }
 
