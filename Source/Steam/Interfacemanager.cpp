@@ -149,11 +149,15 @@ void Interfacemanager::Initialize(uint32_t ApplicationID)
         // Only load the interfaces related to our application.
         if (0 == std::strcmp(CSVManager::Getvalue(Row, 0).c_str(), va_small("%i", ApplicationID)))
         {
-            for (size_t Col = 0; ; ++Col)
+            for (size_t Col = 1; ; ++Col)
             {
                 #define Checktype(Interfacename, Type)          \
-                if(std::strstr(Name.c_str(), #Interfacename))   \
-                { Setmapbyname(Type, Name.c_str()); break; }
+                if(std::strstr(Name.c_str(), Interfacename))    \
+                { Setmapbyname(Type, Name.c_str()); continue; }
+
+                // End of buffer check.
+                if (CSVManager::Getvalue(Row, Col).size() == 0)
+                    break;
 
                 // Find the type.
                 std::string Name = CSVManager::Getvalue(Row, Col);
