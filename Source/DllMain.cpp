@@ -7,6 +7,7 @@
 */
 
 #include <Configuration\All.h>
+#include <iostream>
 #include <cstdarg>
 
 extern "C"
@@ -49,8 +50,26 @@ BOOLEAN WINAPI DllMain(HINSTANCE hDllHandle, DWORD nReason, LPVOID Reserved)
         // Rather not handle all thread updates.
         DisableThreadLibraryCalls( hDllHandle );
 
+        // Create a console window for debug output.
+        if (!std::strstr(GetCommandLineA(), "-no_con"))
+        {
+            AllocConsole();
+            freopen("CONIN$", "r", stdin);
+            freopen("CONOUT$", "w", stdout);
+            freopen("CONOUT$", "w", stderr);
+            std::wcout.clear();
+            std::cout.clear();
+            std::wcerr.clear();
+            std::cerr.clear();
+            std::wcin.clear();
+            std::cin.clear();
+        }
+
         // Clean the logfile so we only save this session.
         DeleteLogfile();
+
+        // Load the plugins if it's not already loaded.
+        LoadLibraryA("Bootstrap"); 
         break;
     }
 
