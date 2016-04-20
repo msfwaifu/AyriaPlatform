@@ -10,3 +10,6 @@
 
 // Warning about constant overflows, signed type being used as unsigned.
 #pragma warning(disable: 4307)
+
+// Warning about unreferenced parameters.
+#pragma warning(disable: 4100)

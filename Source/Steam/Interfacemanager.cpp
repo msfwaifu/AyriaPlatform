@@ -8,6 +8,7 @@
 */
 
 #include <unordered_map>
+#include "Interfaces\All.h"
 #include "Interfacemanager.h"
 #include <Configuration\All.h>
 
@@ -22,9 +23,16 @@ void Createmaps()
     #define CreateInterface(Interface, Type)    \
     auto Temp_ ##Interface = new Interface();   \
     Interfacestore.push_back({ Type, Temp_ ##Interface });  \
-    Interfacenames[##Interface] = Temp_ ##Interface;
+    Interfacenames[#Interface] = Temp_ ##Interface;
 
     // TODO(Convery): Create the interfaces here as they are added.
+    CreateInterface(SteamUtilities001, STEAM_UTILS);
+    CreateInterface(SteamUtilities002, STEAM_UTILS);
+    CreateInterface(SteamUtilities003, STEAM_UTILS);
+    CreateInterface(SteamUtilities004, STEAM_UTILS);
+    CreateInterface(SteamUtilities005, STEAM_UTILS);
+    CreateInterface(SteamUtilities006, STEAM_UTILS);
+    CreateInterface(SteamUtilities007, STEAM_UTILS);
 }
 
 void Setmapbyname(eInterfaceType Type, const char *Name)
