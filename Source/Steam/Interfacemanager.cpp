@@ -25,7 +25,6 @@ void Createmaps()
     Interfacestore.push_back({ Type, Temp_ ##Interface });  \
     Interfacenames[#Interface] = Temp_ ##Interface;
 
-    // TODO(Convery): Create the interfaces here as they are added.
     CreateInterface(SteamUtilities001, STEAM_UTILS);
     CreateInterface(SteamUtilities002, STEAM_UTILS);
     CreateInterface(SteamUtilities003, STEAM_UTILS);
@@ -33,6 +32,20 @@ void Createmaps()
     CreateInterface(SteamUtilities005, STEAM_UTILS);
     CreateInterface(SteamUtilities006, STEAM_UTILS);
     CreateInterface(SteamUtilities007, STEAM_UTILS);
+
+    CreateInterface(SteamUserstats001, STEAM_USERSTATS);
+    CreateInterface(SteamUserstats002, STEAM_USERSTATS);
+    CreateInterface(SteamUserstats003, STEAM_USERSTATS);
+    CreateInterface(SteamUserstats004, STEAM_USERSTATS);
+    CreateInterface(SteamUserstats005, STEAM_USERSTATS);
+    CreateInterface(SteamUserstats006, STEAM_USERSTATS);
+    CreateInterface(SteamUserstats007, STEAM_USERSTATS);
+    CreateInterface(SteamUserstats008, STEAM_USERSTATS);
+    CreateInterface(SteamUserstats009, STEAM_USERSTATS);
+    CreateInterface(SteamUserstats010, STEAM_USERSTATS);
+    CreateInterface(SteamUserstats011, STEAM_USERSTATS);
+
+    // TODO(Convery): Create the interfaces here as they are added.
 }
 
 void Setmapbyname(eInterfaceType Type, const char *Name)
