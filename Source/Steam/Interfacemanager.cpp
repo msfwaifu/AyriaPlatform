@@ -45,6 +45,25 @@ void Createmaps()
     CreateInterface(SteamUserstats010, STEAM_USERSTATS);
     CreateInterface(SteamUserstats011, STEAM_USERSTATS);
 
+    CreateInterface(SteamUser001, STEAM_USER);
+    CreateInterface(SteamUser002, STEAM_USER);
+    CreateInterface(SteamUser003, STEAM_USER);
+    CreateInterface(SteamUser004, STEAM_USER);
+    CreateInterface(SteamUser005, STEAM_USER);
+    CreateInterface(SteamUser006, STEAM_USER);
+    CreateInterface(SteamUser007, STEAM_USER);
+    CreateInterface(SteamUser008, STEAM_USER);
+    CreateInterface(SteamUser009, STEAM_USER);
+    CreateInterface(SteamUser010, STEAM_USER);
+    CreateInterface(SteamUser011, STEAM_USER);
+    CreateInterface(SteamUser012, STEAM_USER);
+    CreateInterface(SteamUser013, STEAM_USER);
+    CreateInterface(SteamUser014, STEAM_USER);
+    CreateInterface(SteamUser015, STEAM_USER);
+    CreateInterface(SteamUser016, STEAM_USER);
+    CreateInterface(SteamUser017, STEAM_USER);
+    CreateInterface(SteamUser018, STEAM_USER);
+
     // TODO(Convery): Create the interfaces here as they are added.
 }
 
