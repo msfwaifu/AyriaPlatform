@@ -64,6 +64,12 @@ void Createmaps()
     CreateInterface(SteamUser017, STEAM_USER);
     CreateInterface(SteamUser018, STEAM_USER);
 
+    CreateInterface(SteamNetworking001, STEAM_NETWORKING);
+    CreateInterface(SteamNetworking002, STEAM_NETWORKING);
+    CreateInterface(SteamNetworking003, STEAM_NETWORKING);
+    CreateInterface(SteamNetworking004, STEAM_NETWORKING);
+    CreateInterface(SteamNetworking005, STEAM_NETWORKING);
+
     // TODO(Convery): Create the interfaces here as they are added.
 }
 
