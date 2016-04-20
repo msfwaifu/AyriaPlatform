@@ -41,7 +41,7 @@ enum eInterfaceType
 
 struct Interfacemanager
 {
-    static void Initialize(const char *Filepath);
+    static void Initialize(const char *Filepath, uint32_t ApplicationID);
     static void *Fetchinterface(const char *Name);
     static void *Fetchinterface(eInterfaceType Type);
 };

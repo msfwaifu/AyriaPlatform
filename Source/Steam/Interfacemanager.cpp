@@ -124,7 +124,7 @@ void Setmapbyname(eInterfaceType Type, const char *Name)
 {
     Interfacemap[Type] = Interfacemanager::Fetchinterface(Name);
 }
-void Interfacemanager::Initialize(const char *Filepath)
+void Interfacemanager::Initialize(const char *Filepath, uint32_t ApplicationID)
 {
     static bool Mapcreated = false;
     if (!Mapcreated)
@@ -133,7 +133,57 @@ void Interfacemanager::Initialize(const char *Filepath)
         Mapcreated = true;
     }
 
-    // TODO(Convery): Load interfaces as CSV file.
+    // Load the active interfaces from a CSV file.
+    if (!CSVManager::Readfile("./Plugins/SteamInterfaces.csv"))
+    {
+        DebugPrint("Missing file: \"./Plugins/SteamInterfaces.csv\". Exiting.");
+        std::exit(0xDEADC0DE);
+    }
+    
+    for (size_t Row = 0; ; ++Row)
+    {
+        // End of buffer check.
+        if (CSVManager::Getvalue(Row, 0).size() == 0)
+            break;
+
+        // Only load the interfaces related to our application.
+        if (0 == std::strcmp(CSVManager::Getvalue(Row, 0).c_str(), va_small("%i", ApplicationID)))
+        {
+            for (size_t Col = 0; ; ++Col)
+            {
+                #define Checktype(Interfacename, Type)          \
+                if(std::strstr(Name.c_str(), #Interfacename))   \
+                { Setmapbyname(Type, Name.c_str()); break; }
+
+                // Find the type.
+                std::string Name = CSVManager::Getvalue(Row, Col);
+                Checktype("SteamUGC0", STEAM_UGC);
+                Checktype("SteamApps0", STEAM_APPS);
+                Checktype("SteamUser0", STEAM_USER);
+                Checktype("SteamHTTP0", STEAM_HTTP);
+                Checktype("SteamMusic0", STEAM_MUSIC);                
+                Checktype("SteamVideo0", STEAM_VIDEO);
+                Checktype("SteamClient0", STEAM_CLIENT);
+                Checktype("SteamUtilities0", STEAM_UTILS);
+                Checktype("SteamFriends0", STEAM_FRIENDS);
+                Checktype("SteamApplist0", STEAM_APPLIST);
+                Checktype("SteamInventory0", STEAM_INVENTORY);
+                Checktype("SteamUserstats0", STEAM_USERSTATS);
+                Checktype("SteamController0", STEAM_CONTROLLER);
+                Checktype("SteamGameserver0", STEAM_GAMESERVER);
+                Checktype("SteamNetworking0", STEAM_NETWORKING);
+                Checktype("SteamHTMLSurface0", STEAM_HTMLSURFACE);
+                Checktype("SteamMusicremote0", STEAM_MUSICREMOTE);
+                Checktype("SteamScreenshots0", STEAM_SCREENSHOTS);
+                Checktype("SteamMatchmaking0", STEAM_MATCHMAKING);
+                Checktype("SteamRemotestorage0", STEAM_REMOTESTORAGE);
+                Checktype("SteamUnifiedmessages0", STEAM_UNIFIEDMESSAGES);
+                Checktype("SteamGameserverStats0", STEAM_GAMESERVERSTATS);
+                Checktype("SteamMatchamkingservers0", STEAM_MATCHMAKINGSERVERS);
+                Checktype("SteamMasterserverUpdater0", STEAM_MASTERSERVERUPDATER);                
+            }
+        }
+    }
 }
 void *Interfacemanager::Fetchinterface(const char *Name)
 {
