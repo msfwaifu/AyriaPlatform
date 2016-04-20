@@ -371,3 +371,53 @@ struct SteamMatchmaking009 : public Fakeclass
 {
     SteamMatchmaking009();
 };
+
+// Cloudstorage.
+struct SteamRemotestorage001 : public Fakeclass
+{
+    SteamRemotestorage001();
+};
+struct SteamRemotestorage002 : public Fakeclass
+{
+    SteamRemotestorage002();
+};
+struct SteamRemotestorage003 : public Fakeclass
+{
+    SteamRemotestorage003();
+};
+struct SteamRemotestorage004 : public Fakeclass
+{
+    SteamRemotestorage004();
+};
+struct SteamRemotestorage005 : public Fakeclass
+{
+    SteamRemotestorage005();
+};
+struct SteamRemotestorage006 : public Fakeclass
+{
+    SteamRemotestorage006();
+};
+struct SteamRemotestorage007 : public Fakeclass
+{
+    SteamRemotestorage007();
+};
+struct SteamRemotestorage008 : public Fakeclass
+{
+    SteamRemotestorage008();
+};
+struct SteamRemotestorage009 : public Fakeclass
+{
+    SteamRemotestorage009();
+};
+struct SteamRemotestorage010 : public Fakeclass
+{
+    SteamRemotestorage010();
+};
+struct SteamRemotestorage011 : public Fakeclass
+{
+    SteamRemotestorage011();
+};
+struct SteamRemotestorage012 : public Fakeclass
+{
+    SteamRemotestorage012();
+};

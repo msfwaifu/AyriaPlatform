@@ -117,6 +117,19 @@ void Createmaps()
     CreateInterface(SteamApps006, STEAM_APPS);
     CreateInterface(SteamApps007, STEAM_APPS);
 
+    CreateInterface(SteamRemotestorage001, STEAM_REMOTESTORAGE);
+    CreateInterface(SteamRemotestorage002, STEAM_REMOTESTORAGE);
+    CreateInterface(SteamRemotestorage003, STEAM_REMOTESTORAGE);
+    CreateInterface(SteamRemotestorage004, STEAM_REMOTESTORAGE);
+    CreateInterface(SteamRemotestorage005, STEAM_REMOTESTORAGE);
+    CreateInterface(SteamRemotestorage006, STEAM_REMOTESTORAGE);
+    CreateInterface(SteamRemotestorage007, STEAM_REMOTESTORAGE);
+    CreateInterface(SteamRemotestorage008, STEAM_REMOTESTORAGE);
+    CreateInterface(SteamRemotestorage009, STEAM_REMOTESTORAGE);
+    CreateInterface(SteamRemotestorage010, STEAM_REMOTESTORAGE);
+    CreateInterface(SteamRemotestorage011, STEAM_REMOTESTORAGE);
+    CreateInterface(SteamRemotestorage012, STEAM_REMOTESTORAGE);
+
     // TODO(Convery): Create the interfaces here as they are added.
 }
 

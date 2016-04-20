@@ -115,7 +115,6 @@ public:
     }
     bool IsP2PPacketAvailable0(uint32_t *pcubMsgSize)
     {
-        PrintFunction();
         return false;
     }
     bool ReadP2PPacket0(void *pubDest, uint32_t cubDest, uint32_t *pcubMsgSize, CSteamID *psteamIDRemote)

@@ -108,7 +108,6 @@ public:
     }
     CSteamID GetLobbyMemberByIndex(CSteamID steamIDLobby, int iMember)
     {
-        PrintFunction();
         return CSteamID(Steam_UserID);
     }
     const char *GetLobbyData(CSteamID SteamIDLobby, const char *pchKey)
