@@ -70,6 +70,16 @@ void Createmaps()
     CreateInterface(SteamNetworking004, STEAM_NETWORKING);
     CreateInterface(SteamNetworking005, STEAM_NETWORKING);
 
+    CreateInterface(SteamMatchmaking001, STEAM_MATCHMAKING);
+    CreateInterface(SteamMatchmaking002, STEAM_MATCHMAKING);
+    CreateInterface(SteamMatchmaking003, STEAM_MATCHMAKING);
+    CreateInterface(SteamMatchmaking004, STEAM_MATCHMAKING);
+    CreateInterface(SteamMatchmaking005, STEAM_MATCHMAKING);
+    CreateInterface(SteamMatchmaking006, STEAM_MATCHMAKING);
+    CreateInterface(SteamMatchmaking007, STEAM_MATCHMAKING);
+    CreateInterface(SteamMatchmaking008, STEAM_MATCHMAKING);
+    CreateInterface(SteamMatchmaking009, STEAM_MATCHMAKING);
+
     // TODO(Convery): Create the interfaces here as they are added.
 }
 
