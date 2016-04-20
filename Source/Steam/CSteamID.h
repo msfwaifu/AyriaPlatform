@@ -22,6 +22,7 @@
 #ifdef _S4N_
 #define sprintf(...)
 #else
+#include <Configuration\Defines.h>
 #include <stdio.h>
 #ifndef NO_CSTEAMID_STL
 #include <iostream>

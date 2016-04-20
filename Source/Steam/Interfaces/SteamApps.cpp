@@ -73,7 +73,7 @@ public:
     uint32_t GetEarliestPurchaseUnixTime(uint32_t nAppID)
     {
         PrintFunction();
-        return Steam_StartupTimestamp - 600;
+        return uint32_t(Steam_StartupTimestamp - 600);
     }
     bool BIsSubscribedFromFreeWeekend()
     {
