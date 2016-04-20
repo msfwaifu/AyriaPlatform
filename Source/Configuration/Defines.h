@@ -51,3 +51,6 @@
 #ifdef _WIN32
 #define _CRT_SECURE_NO_WARNINGS
 #endif
+
+// Display information about which callback was called.
+#define STEAM_PRINTCALLBACKS
