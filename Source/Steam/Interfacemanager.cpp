@@ -109,6 +109,14 @@ void Createmaps()
     CreateInterface(SteamFriends014, STEAM_FRIENDS);
     CreateInterface(SteamFriends015, STEAM_FRIENDS);
 
+    CreateInterface(SteamApps001, STEAM_APPS);
+    CreateInterface(SteamApps002, STEAM_APPS);
+    CreateInterface(SteamApps003, STEAM_APPS);
+    CreateInterface(SteamApps004, STEAM_APPS);
+    CreateInterface(SteamApps005, STEAM_APPS);
+    CreateInterface(SteamApps006, STEAM_APPS);
+    CreateInterface(SteamApps007, STEAM_APPS);
+
     // TODO(Convery): Create the interfaces here as they are added.
 }
 
