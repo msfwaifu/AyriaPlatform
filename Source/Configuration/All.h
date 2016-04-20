@@ -11,3 +11,5 @@
 #include "Warnings.h"
 #include "Defines.h"
 #include "Macros.h"
+
+#include "Steamsettings.h"
