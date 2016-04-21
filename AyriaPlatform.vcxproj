@@ -189,6 +189,7 @@
     <ClInclude Include="Source\Configuration\Macros.h" />
     <ClInclude Include="Source\Configuration\Steamsettings.h" />
     <ClInclude Include="Source\Configuration\Warnings.h" />
+    <ClInclude Include="Source\Exports\Ayriaexports.h" />
     <ClInclude Include="Source\Exports\Steamexports.h" />
     <ClInclude Include="Source\Steam\CSteamID.h" />
     <ClInclude Include="Source\Steam\Interfacemanager.h" />
@@ -207,6 +208,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Configuration\Steamsettings.cpp" />
     <ClCompile Include="Source\DllMain.cpp" />
+    <ClCompile Include="Source\Exports\Ayriaexports.cpp" />
     <ClCompile Include="Source\Exports\Steamexports.cpp" />
     <ClCompile Include="Source\Steam\Interfacemanager.cpp" />
     <ClCompile Include="Source\Steam\Interfaces\SteamApps.cpp" />
