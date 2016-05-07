@@ -32,7 +32,7 @@ char *strsep(char **String, const char *Delimiter)
 }
 #endif
 
-std::vector<std::vector<std::string>> EntryBuffer;
+std::vector<std::vector<std::string>> CSVManager::EntryBuffer;
 bool CSVManager::Readfile(const char *Filepath)
 {
     FILE *Filehandle{ nullptr };
