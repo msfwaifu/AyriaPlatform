@@ -97,11 +97,11 @@ public:
     }
     bool SetSyncPlatforms(const char *pchFile, uint32_t eRemoteStoragePlatform)
     {
-        return 0;
+        return true;
     }
     uint32_t GetSyncPlatforms(const char *pchFile)
     {
-        return 0;
+        return 0xFFFFFFFF;
     }
     bool IsCloudEnabledForApp()
     {
