@@ -7,3 +7,5 @@
 *.sln
 /Copy.bat
 *.licenseheader
+*.iobj
+*.ipdb
