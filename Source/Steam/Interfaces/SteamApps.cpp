@@ -55,8 +55,8 @@ public:
     bool BIsSubscribedApp(uint32_t nAppID)
     {
         /*
-        TODO(Convery):
-        Query the database to see if the user owns this game.
+            TODO(Convery):
+            Query the database to see if the user owns this game.
         */
 
         return true;
@@ -64,11 +64,11 @@ public:
     bool BIsDlcInstalled(uint32_t nAppID)
     {
         /*
-        TODO(Convery):
-        Query the database to see if the user owns this DLC.
+            TODO(Convery):
+            Query the database to see if the user owns this DLC.
         */
 
-        return false;
+        return true;
     }
     uint32_t GetEarliestPurchaseUnixTime(uint32_t nAppID)
     {
@@ -85,8 +85,8 @@ public:
         PrintFunction();
 
         /*
-        TODO(Convery):
-        Query the database to see how many DLC we should handle.
+            TODO(Convery):
+            Query the database to see how many DLC we should handle.
         */
 
         return 0;
@@ -131,8 +131,8 @@ public:
         PrintFunction();
 
         /*
-        TODO(Convery):
-        Implement a portable GetWorkingDirectory().
+            TODO(Convery):
+            Implement a portable GetWorkingDirectory().
         */
 
         return 0;
@@ -141,8 +141,8 @@ public:
     {
         InfoPrint(va("%s - %i", __FUNCTION__, appID));
         /*
-        TODO(Convery):
-        Query the database to see if the user owns this application.
+            TODO(Convery):
+            Query the database to see if the user owns this application.
         */
         return false;
     }
@@ -164,7 +164,7 @@ public:
     bool GetDlcDownloadProgress(uint32_t nAppID, uint64_t *punBytesDownloaded, uint64_t *punBytesTotal)
     {
         PrintFunction();
-        return false;
+        return true;
     }
     int GetAppBuildId()
     {

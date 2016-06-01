@@ -320,7 +320,6 @@ public:
     }
     bool SetRichPresence(const char *pchKey, const char *pchValue)
     {
-        PrintFunction();
         return true;
     }
     void ClearRichPresence()

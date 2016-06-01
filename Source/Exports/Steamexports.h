@@ -12,56 +12,56 @@
 extern "C"
 {
     // Interface access.
-    void *SteamAppList();
-    void *SteamApps();
-    void *SteamClient();
-    void *SteamController();
-    void *SteamFriends();
-    void *SteamGameServer();
-    void *SteamGameServerHTTP();
-    void *SteamGameServerInventory();
-    void *SteamGameServerNetworking();
-    void *SteamGameServerStats();
-    void *SteamGameServerUGC();
-    void *SteamGameServerUtils();
-    void *SteamHTMLSurface();
-    void *SteamHTTP();
-    void *SteamInventory();
-    void *SteamMatchmaking();
-    void *SteamMatchmakingServers();
-    void *SteamMusic();
-    void *SteamMusicRemote();
-    void *SteamNetworking();
-    void *SteamRemoteStorage();
-    void *SteamScreenshots();
-    void *SteamUnifiedMessages();
-    void *SteamUGC();
-    void *SteamUser();
-    void *SteamUserStats();
-    void *SteamUtils();
-    void *SteamVideo();
-    void *SteamMasterServerUpdater();
+    EXPORT_ATTR void *SteamAppList();
+    EXPORT_ATTR void *SteamApps();
+    EXPORT_ATTR void *SteamClient();
+    EXPORT_ATTR void *SteamController();
+    EXPORT_ATTR void *SteamFriends();
+    EXPORT_ATTR void *SteamGameServer();
+    EXPORT_ATTR void *SteamGameServerHTTP();
+    EXPORT_ATTR void *SteamGameServerInventory();
+    EXPORT_ATTR void *SteamGameServerNetworking();
+    EXPORT_ATTR void *SteamGameServerStats();
+    EXPORT_ATTR void *SteamGameServerUGC();
+    EXPORT_ATTR void *SteamGameServerUtils();
+    EXPORT_ATTR void *SteamHTMLSurface();
+    EXPORT_ATTR void *SteamHTTP();
+    EXPORT_ATTR void *SteamInventory();
+    EXPORT_ATTR void *SteamMatchmaking();
+    EXPORT_ATTR void *SteamMatchmakingServers();
+    EXPORT_ATTR void *SteamMusic();
+    EXPORT_ATTR void *SteamMusicRemote();
+    EXPORT_ATTR void *SteamNetworking();
+    EXPORT_ATTR void *SteamRemoteStorage();
+    EXPORT_ATTR void *SteamScreenshots();
+    EXPORT_ATTR void *SteamUnifiedMessages();
+    EXPORT_ATTR void *SteamUGC();
+    EXPORT_ATTR void *SteamUser();
+    EXPORT_ATTR void *SteamUserStats();
+    EXPORT_ATTR void *SteamUtils();
+    EXPORT_ATTR void *SteamVideo();
+    EXPORT_ATTR void *SteamMasterServerUpdater();
 
     // Initialization and shutdown.
-    bool SteamAPI_Init();
-    bool SteamAPI_InitSafe();
-    void SteamAPI_Shutdown();
-    bool SteamAPI_IsSteamRunning();
-    const char *SteamAPI_GetSteamInstallPath();
-    bool SteamAPI_RestartAppIfNecessary(uint32_t unOwnAppID);
+    EXPORT_ATTR bool SteamAPI_Init();
+    EXPORT_ATTR bool SteamAPI_InitSafe();
+    EXPORT_ATTR void SteamAPI_Shutdown();
+    EXPORT_ATTR bool SteamAPI_IsSteamRunning();
+    EXPORT_ATTR const char *SteamAPI_GetSteamInstallPath();
+    EXPORT_ATTR bool SteamAPI_RestartAppIfNecessary(uint32_t unOwnAppID);
 
     // Callback management.
-    void SteamAPI_RunCallbacks();
-    void SteamAPI_RegisterCallback(void *pCallback, int iCallback);
-    void SteamAPI_UnregisterCallback(void *pCallback, int iCallback);
-    void SteamAPI_RegisterCallResult(void *pCallback, uint64_t hAPICall);
-    void SteamAPI_UnregisterCallResult(void *pCallback, uint64_t hAPICall);
+    EXPORT_ATTR void SteamAPI_RunCallbacks();
+    EXPORT_ATTR void SteamAPI_RegisterCallback(void *pCallback, int iCallback);
+    EXPORT_ATTR void SteamAPI_UnregisterCallback(void *pCallback, int iCallback);
+    EXPORT_ATTR void SteamAPI_RegisterCallResult(void *pCallback, uint64_t hAPICall);
+    EXPORT_ATTR void SteamAPI_UnregisterCallResult(void *pCallback, uint64_t hAPICall);
 
     // Dedicated server mode.    
-    bool SteamGameServer_BSecure();
-    void SteamGameServer_Shutdown();
-    void SteamGameServer_RunCallbacks();
-    uint64_t SteamGameServer_GetSteamID();
-    bool SteamGameServer_Init(uint32_t unIP, uint16_t usSteamPort, uint16_t usGamePort, uint16_t usQueryPort, uint32_t eServerMode, const char *pchVersionString);
-    bool SteamGameServer_InitSafe(uint32_t unIP, uint16_t usSteamPort, uint16_t usGamePort, uint16_t usQueryPort, uint32_t eServerMode, const char *pchVersionString);
+    EXPORT_ATTR bool SteamGameServer_BSecure();
+    EXPORT_ATTR void SteamGameServer_Shutdown();
+    EXPORT_ATTR void SteamGameServer_RunCallbacks();
+    EXPORT_ATTR uint64_t SteamGameServer_GetSteamID();
+    EXPORT_ATTR bool SteamGameServer_Init(uint32_t unIP, uint16_t usSteamPort, uint16_t usGamePort, uint16_t usQueryPort, uint32_t eServerMode, const char *pchVersionString);
+    EXPORT_ATTR bool SteamGameServer_InitSafe(uint32_t unIP, uint16_t usSteamPort, uint16_t usGamePort, uint16_t usQueryPort, uint32_t eServerMode, const char *pchVersionString);
 }
