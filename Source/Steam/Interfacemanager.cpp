@@ -11,6 +11,7 @@
 #include "Interfaces\All.h"
 #include "Interfacemanager.h"
 #include <Configuration\All.h>
+#include <Exports\Steamexports.h>
 
 // The interfaces we support.
 std::vector<std::pair<eInterfaceType /* Type */, void * /* Interface */>> Interfacestore;
@@ -213,6 +214,15 @@ void *Interfacemanager::Fetchinterface(const char *Name)
 }
 void *Interfacemanager::Fetchinterface(eInterfaceType Type)
 {
+    // Workaround for initialization of servers.
+    static bool Initialized = false;
+    if (!Initialized)
+    {
+        if(Interfacestore.size() == 0)
+            SteamAPI_Init();
+        Initialized = true;
+    }
+
     auto Result = Interfacemap.find(Type);
     if (Result != Interfacemap.end()) return Result->second;
 
