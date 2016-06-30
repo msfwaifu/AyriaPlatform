@@ -208,19 +208,23 @@ extern "C"
     }
     EXPORT_ATTR void SteamAPI_RegisterCallback(void *pCallback, int iCallback)
     {
-        SteamCallback::RegisterCallback(static_cast<CallbackBase *>(pCallback), iCallback);
+        if(pCallback)
+            SteamCallback::RegisterCallback(static_cast<CallbackBase *>(pCallback), iCallback);
     }
     EXPORT_ATTR void SteamAPI_UnregisterCallback(void *pCallback, int iCallback)
     {
-        SteamCallback::UnregisterCallback(static_cast<CallbackBase *>(pCallback), iCallback);
+        if(pCallback)
+            SteamCallback::UnregisterCallback(static_cast<CallbackBase *>(pCallback), iCallback);
     }
     EXPORT_ATTR void SteamAPI_RegisterCallResult(void *pCallback, uint64_t hAPICall)
     {
-        SteamCallback::RegisterCallResult(hAPICall, static_cast<CallbackBase *>(pCallback));
+        if(pCallback)
+            SteamCallback::RegisterCallResult(hAPICall, static_cast<CallbackBase *>(pCallback));
     }
     EXPORT_ATTR void SteamAPI_UnregisterCallResult(void *pCallback, uint64_t hAPICall)
     {
-        SteamCallback::UnregisterCallResult(hAPICall, static_cast<CallbackBase *>(pCallback));
+        if(pCallback)
+            SteamCallback::UnregisterCallResult(hAPICall, static_cast<CallbackBase *>(pCallback));
     }
 
     // Dedicated server mode.    
