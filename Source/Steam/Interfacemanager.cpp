@@ -215,6 +215,13 @@ void *Interfacemanager::Fetchinterface(eInterfaceType Type)
     auto Result = Interfacemap.find(Type);
     if (Result != Interfacemap.end()) return Result->second;
 
+    // Search through the created interfaces to find the last of the type.
+    for (auto Iterator = Interfacestore.rbegin(); Iterator != Interfacestore.rend(); Iterator++)
+    {
+        if (Iterator->first == Type)
+            return Iterator->second;
+    }
+
     DebugPrint(va_small("%s had no interface for type %i", __FUNCTION__, Type));
     return nullptr;
 }
