@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <Steam\CSteamID.h>
 #include <Configuration\All.h>
+#include <Steam\Interfacemanager.h>
 
 #define Createmethod(Index, Class, Function)    \
 auto Temp ##Function = &Class::Function;        \
@@ -1195,3 +1196,25 @@ SteamFriends015::SteamFriends015()
     Createmethod(69, SteamFriends, EnumerateFollowingList);
 };
 
+struct Steamfriendsloader
+{
+    Steamfriendsloader()
+    {
+        Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends001", new SteamFriends001);
+        Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends002", new SteamFriends002);
+        Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends003", new SteamFriends003);
+        Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends004", new SteamFriends004);
+        Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends005", new SteamFriends005);
+        Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends006", new SteamFriends006);
+        Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends007", new SteamFriends007);
+        Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends008", new SteamFriends008);
+        Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends009", new SteamFriends009);
+        Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends010", new SteamFriends010);
+        Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends011", new SteamFriends011);
+        Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends012", new SteamFriends012);
+        Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends013", new SteamFriends013);
+        Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends014", new SteamFriends014);
+        Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends015", new SteamFriends015);
+    }
+};
+static Steamfriendsloader Interfaceloader;

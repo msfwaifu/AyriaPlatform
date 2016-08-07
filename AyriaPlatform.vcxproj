@@ -140,7 +140,7 @@
       </EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>if "$(ComputerName)" == "H08" (call $(ProjectDir)Copy.bat)</Command>
+      <Command>if "$(ComputerName)" == "HEDGEHOME" (call $(ProjectDir)Copy.bat)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -180,7 +180,7 @@
       </EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>if "$(ComputerName)" == "H08" (call $(ProjectDir)Copy.bat)</Command>
+      <Command>if "$(ComputerName)" == "HEDGEHOME" (call $(ProjectDir)Copy.bat)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

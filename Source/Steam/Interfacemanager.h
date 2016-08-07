@@ -44,4 +44,5 @@ struct Interfacemanager
     static void Initialize(uint32_t ApplicationID);
     static void *Fetchinterface(const char *Name);
     static void *Fetchinterface(eInterfaceType Type);
+    static void Addinterface(eInterfaceType Type, const char *Name, void *Interface);
 };

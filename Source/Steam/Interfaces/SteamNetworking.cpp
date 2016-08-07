@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <Steam\CSteamID.h>
 #include <Configuration\All.h>
+#include <Steam\Interfacemanager.h>
 
 #define Createmethod(Index, Class, Function)    \
 auto Temp ##Function = &Class::Function;        \
@@ -267,3 +268,16 @@ SteamNetworking005::SteamNetworking005()
     Createmethod(20, SteamNetworking, GetSocketConnectionType);
     Createmethod(21, SteamNetworking, GetMaxPacketSize);
 };
+
+struct Steamnetworkingloader
+{
+    Steamnetworkingloader()
+    {
+        Interfacemanager::Addinterface(STEAM_NETWORKING, "SteamNetworking001", new SteamNetworking001);
+        Interfacemanager::Addinterface(STEAM_NETWORKING, "SteamNetworking002", new SteamNetworking002);
+        Interfacemanager::Addinterface(STEAM_NETWORKING, "SteamNetworking003", new SteamNetworking003);
+        Interfacemanager::Addinterface(STEAM_NETWORKING, "SteamNetworking004", new SteamNetworking004);
+        Interfacemanager::Addinterface(STEAM_NETWORKING, "SteamNetworking005", new SteamNetworking005);
+    }
+};
+static Steamnetworkingloader Interfaceloader;

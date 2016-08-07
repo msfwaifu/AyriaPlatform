@@ -10,6 +10,7 @@
 #include <chrono>
 #include <Steam\CSteamID.h>
 #include <Configuration\All.h>
+#include <Steam\Interfacemanager.h>
 
 #define Createmethod(Index, Class, Function)    \
 auto Temp ##Function = &Class::Function;        \
@@ -308,3 +309,18 @@ SteamUtilities007::SteamUtilities007()
     Createmethod(23, SteamUtils, GetSteamUILanguage);
     Createmethod(24, SteamUtils, IsSteamRunningInVR);
 };
+
+struct Steamutilitiesloader
+{
+    Steamutilitiesloader()
+    {
+        Interfacemanager::Addinterface(STEAM_UTILS, "SteamUtilities001", new SteamUtilities001);
+        Interfacemanager::Addinterface(STEAM_UTILS, "SteamUtilities002", new SteamUtilities002);
+        Interfacemanager::Addinterface(STEAM_UTILS, "SteamUtilities003", new SteamUtilities003);
+        Interfacemanager::Addinterface(STEAM_UTILS, "SteamUtilities004", new SteamUtilities004);
+        Interfacemanager::Addinterface(STEAM_UTILS, "SteamUtilities005", new SteamUtilities005);
+        Interfacemanager::Addinterface(STEAM_UTILS, "SteamUtilities006", new SteamUtilities006);
+        Interfacemanager::Addinterface(STEAM_UTILS, "SteamUtilities007", new SteamUtilities007);
+    }
+};
+static Steamutilitiesloader Interfaceloader;

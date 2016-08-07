@@ -11,6 +11,7 @@
 #include <Steam\CSteamID.h>
 #include <Configuration\All.h>
 #include <Steam\Steamcallback.h>
+#include <Steam\Interfacemanager.h>
 
 #define Createmethod(Index, Class, Function)    \
 auto Temp ##Function = &Class::Function;        \
@@ -740,3 +741,29 @@ SteamUser018::SteamUser018()
     Createmethod(23, SteamUser, GetPlayerSteamLevel);
     Createmethod(24, SteamUser, RequestStoreAuthURL);
 };
+
+struct Steamuserloader
+{
+    Steamuserloader()
+    {
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser001", new SteamUser001);
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser002", new SteamUser002);
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser003", new SteamUser003);
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser004", new SteamUser004);
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser005", new SteamUser005);
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser006", new SteamUser006);
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser007", new SteamUser007);
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser008", new SteamUser008);
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser009", new SteamUser009);
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser010", new SteamUser010);
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser011", new SteamUser011);
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser012", new SteamUser012);
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser013", new SteamUser013);
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser014", new SteamUser014);
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser015", new SteamUser015);
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser016", new SteamUser016);
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser017", new SteamUser017);
+        Interfacemanager::Addinterface(STEAM_USER, "SteamUser018", new SteamUser018);
+    }
+};
+static Steamuserloader Interfaceloader;

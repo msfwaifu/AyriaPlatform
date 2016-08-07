@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <Steam\CSteamID.h>
 #include <Configuration\All.h>
+#include <Steam\Interfacemanager.h>
 
 #define Createmethod(Index, Class, Function)    \
 auto Temp ##Function = &Class::Function;        \
@@ -757,3 +758,23 @@ SteamRemotestorage012::SteamRemotestorage012()
     Createmethod(50, SteamRemotestorage, EnumeratePublishedWorkshopFiles);
     Createmethod(51, SteamRemotestorage, UGCDownloadToLocation);
 };
+
+struct Steamremotestorageloader
+{
+    Steamremotestorageloader()
+    {
+        Interfacemanager::Addinterface(STEAM_REMOTESTORAGE, "SteamRemotestorage001", new SteamRemotestorage001);
+        Interfacemanager::Addinterface(STEAM_REMOTESTORAGE, "SteamRemotestorage002", new SteamRemotestorage002);
+        Interfacemanager::Addinterface(STEAM_REMOTESTORAGE, "SteamRemotestorage003", new SteamRemotestorage003);
+        Interfacemanager::Addinterface(STEAM_REMOTESTORAGE, "SteamRemotestorage004", new SteamRemotestorage004);
+        Interfacemanager::Addinterface(STEAM_REMOTESTORAGE, "SteamRemotestorage005", new SteamRemotestorage005);
+        Interfacemanager::Addinterface(STEAM_REMOTESTORAGE, "SteamRemotestorage006", new SteamRemotestorage006);
+        Interfacemanager::Addinterface(STEAM_REMOTESTORAGE, "SteamRemotestorage007", new SteamRemotestorage007);
+        Interfacemanager::Addinterface(STEAM_REMOTESTORAGE, "SteamRemotestorage008", new SteamRemotestorage008);
+        Interfacemanager::Addinterface(STEAM_REMOTESTORAGE, "SteamRemotestorage009", new SteamRemotestorage009);
+        Interfacemanager::Addinterface(STEAM_REMOTESTORAGE, "SteamRemotestorage010", new SteamRemotestorage010);
+        Interfacemanager::Addinterface(STEAM_REMOTESTORAGE, "SteamRemotestorage011", new SteamRemotestorage011);
+        Interfacemanager::Addinterface(STEAM_REMOTESTORAGE, "SteamRemotestorage012", new SteamRemotestorage012);
+    }
+};
+static Steamremotestorageloader Interfaceloader;

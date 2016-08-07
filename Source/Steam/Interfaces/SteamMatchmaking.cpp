@@ -12,6 +12,7 @@
 #include <Steam\CSteamID.h>
 #include <Configuration\All.h>
 #include <Steam\Steamcallback.h>
+#include <Steam\Interfacemanager.h>
 
 #define Createmethod(Index, Class, Function)    \
 auto Temp ##Function = &Class::Function;        \
@@ -624,3 +625,20 @@ SteamMatchmaking009::SteamMatchmaking009()
     Createmethod(36, SteamMatchmaking, SetLobbyOwner);
     Createmethod(37, SteamMatchmaking, SetLinkedLobby);
 };
+
+struct Steammatchmakingloader
+{
+    Steammatchmakingloader()
+    {
+        Interfacemanager::Addinterface(STEAM_MATCHMAKING, "SteamMatchmaking001", new SteamMatchmaking001);
+        Interfacemanager::Addinterface(STEAM_MATCHMAKING, "SteamMatchmaking002", new SteamMatchmaking002);
+        Interfacemanager::Addinterface(STEAM_MATCHMAKING, "SteamMatchmaking003", new SteamMatchmaking003);
+        Interfacemanager::Addinterface(STEAM_MATCHMAKING, "SteamMatchmaking004", new SteamMatchmaking004);
+        Interfacemanager::Addinterface(STEAM_MATCHMAKING, "SteamMatchmaking005", new SteamMatchmaking005);
+        Interfacemanager::Addinterface(STEAM_MATCHMAKING, "SteamMatchmaking006", new SteamMatchmaking006);
+        Interfacemanager::Addinterface(STEAM_MATCHMAKING, "SteamMatchmaking007", new SteamMatchmaking007);
+        Interfacemanager::Addinterface(STEAM_MATCHMAKING, "SteamMatchmaking008", new SteamMatchmaking008);
+        Interfacemanager::Addinterface(STEAM_MATCHMAKING, "SteamMatchmaking009", new SteamMatchmaking009);
+    }
+};
+static Steammatchmakingloader Interfaceloader;

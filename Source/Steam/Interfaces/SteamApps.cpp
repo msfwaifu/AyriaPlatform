@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <Steam\CSteamID.h>
 #include <Configuration\All.h>
+#include <Steam\Interfacemanager.h>
 
 #define Createmethod(Index, Class, Function)    \
 auto Temp ##Function = &Class::Function;        \
@@ -297,3 +298,18 @@ SteamApps007::SteamApps007()
     Createmethod(23, SteamApps, GetAppBuildId);
     Createmethod(24, SteamApps, RegisterActivationCode);
 };
+
+struct Steamappsloader
+{
+    Steamappsloader()
+    {
+        Interfacemanager::Addinterface(STEAM_APPS, "SteamApps001", new SteamApps001);
+        Interfacemanager::Addinterface(STEAM_APPS, "SteamApps002", new SteamApps002);
+        Interfacemanager::Addinterface(STEAM_APPS, "SteamApps003", new SteamApps003);
+        Interfacemanager::Addinterface(STEAM_APPS, "SteamApps004", new SteamApps004);
+        Interfacemanager::Addinterface(STEAM_APPS, "SteamApps005", new SteamApps005);
+        Interfacemanager::Addinterface(STEAM_APPS, "SteamApps006", new SteamApps006);
+        Interfacemanager::Addinterface(STEAM_APPS, "SteamApps007", new SteamApps007);
+    }
+};
+static Steamappsloader Interfaceloader;

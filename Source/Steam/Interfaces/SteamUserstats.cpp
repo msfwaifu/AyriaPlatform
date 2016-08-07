@@ -9,6 +9,7 @@
 #include "All.h"
 #include <Steam\CSteamID.h>
 #include <Configuration\All.h>
+#include <Steam\Interfacemanager.h>
 
 #define Createmethod(Index, Class, Function)    \
 auto Temp ##Function = &Class::Function;        \
@@ -694,3 +695,21 @@ SteamUserstats011::SteamUserstats011()
     Createmethod(42, SteamUserstats, GetGlobalStatHistory2);
 };
 
+struct Steamuserstatsloader
+{
+    Steamuserstatsloader()
+    {
+        Interfacemanager::Addinterface(STEAM_USERSTATS, "SteamUserstats001", new SteamUserstats001);
+        Interfacemanager::Addinterface(STEAM_USERSTATS, "SteamUserstats002", new SteamUserstats002);
+        Interfacemanager::Addinterface(STEAM_USERSTATS, "SteamUserstats003", new SteamUserstats003);
+        Interfacemanager::Addinterface(STEAM_USERSTATS, "SteamUserstats004", new SteamUserstats004);
+        Interfacemanager::Addinterface(STEAM_USERSTATS, "SteamUserstats005", new SteamUserstats005);
+        Interfacemanager::Addinterface(STEAM_USERSTATS, "SteamUserstats006", new SteamUserstats006);
+        Interfacemanager::Addinterface(STEAM_USERSTATS, "SteamUserstats007", new SteamUserstats007);
+        Interfacemanager::Addinterface(STEAM_USERSTATS, "SteamUserstats008", new SteamUserstats008);
+        Interfacemanager::Addinterface(STEAM_USERSTATS, "SteamUserstats009", new SteamUserstats009);
+        Interfacemanager::Addinterface(STEAM_USERSTATS, "SteamUserstats010", new SteamUserstats010);
+        Interfacemanager::Addinterface(STEAM_USERSTATS, "SteamUserstats011", new SteamUserstats011);
+    }
+};
+static Steamuserstatsloader Interfaceloader;
