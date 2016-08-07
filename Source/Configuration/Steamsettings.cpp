@@ -20,5 +20,6 @@ bool Steam_Server{ false };
 bool Steam_Offline{ false };
 
 // User information.
+extern char Steam_path[260]{};
 uint64_t Steam_UserID{ 0x1100001DEADC0DE };
 char Steam_Username[17]{ "Ayria" };

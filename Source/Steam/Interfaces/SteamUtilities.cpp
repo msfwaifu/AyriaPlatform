@@ -13,6 +13,12 @@
 #include <Steam\Steamcallback.h>
 #include <Steam\Interfacemanager.h>
 
+#ifdef _WIN32
+#include <Windows.h>
+#endif
+
+constexpr const char *Gameoverlay = sizeof(void *) == 8 ? "gameoverlayrenderer64.dll" : "gameoverlayrenderer.dll";
+
 #define Createmethod(Index, Class, Function)    \
 auto Temp ##Function = &Class::Function;        \
 Methods[Index] = *(void **)&Temp ##Function;
@@ -90,7 +96,18 @@ public:
     }
     void SetOverlayNotificationPosition(uint32_t eNotificationPosition)
     {
-        PrintFunction();
+#ifdef _WIN32
+        HMODULE Library = GetModuleHandleA(Gameoverlay);
+        if (Library)
+        {
+            FARPROC _SetNotificationPosition = GetProcAddress(Library, "SetNotificationPosition");
+
+		    if (_SetNotificationPosition)
+		    {
+			    ((void(*)(int32_t))_SetNotificationPosition)(eNotificationPosition);
+		    }
+        }
+#endif
     }
     bool IsAPICallCompleted(uint64_t hSteamAPICall, bool *pbFailed)
     {
@@ -123,13 +140,35 @@ public:
 
     bool IsOverlayEnabled()
     {
-        PrintFunction();
+#ifdef _WIN32
+        HMODULE Library = GetModuleHandleA(Gameoverlay);
+        if (Library)
+        {
+            FARPROC _IsOverlayEnabled = GetProcAddress(Library, "IsOverlayEnabled");
+
+		    if (_IsOverlayEnabled)
+		    {
+			    return ((bool(*)())_IsOverlayEnabled)();
+		    }
+        }
+#endif
         return false;
     }
 
     bool BOverlayNeedsPresent()
     {
-        PrintFunction();
+#ifdef _WIN32
+        HMODULE Library = GetModuleHandleA(Gameoverlay);
+        if (Library)
+        {
+            FARPROC _BOverlayNeedsPresent = GetProcAddress(Library, "BOverlayNeedsPresent");
+
+		    if (_BOverlayNeedsPresent)
+		    {
+			    return ((bool(*)())_BOverlayNeedsPresent)();
+		    }
+        }
+#endif
         return false;
     }
     uint64_t CheckFileSignature(const char *szFileName)

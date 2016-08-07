@@ -20,5 +20,6 @@ extern bool Steam_Server;
 extern bool Steam_Offline;
 
 // User information.
+extern char Steam_path[260];
 extern uint64_t Steam_UserID;
 extern char Steam_Username[17];

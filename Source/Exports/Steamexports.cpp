@@ -180,6 +180,48 @@ extern "C"
         // Set the environment variable for games that use it.
         SetEnvironmentVariableA("SteamAppId", va("%lu", Steam_ApplicationID));
 	    SetEnvironmentVariableA("SteamGameId", va("%llu", Steam_ApplicationID & 0xFFFFFF));
+
+        // Get the install directory.
+        HKEY hRegKey;
+        unsigned long Size = 260;
+        if (RegOpenKeyExA(HKEY_LOCAL_MACHINE, Steamregistry, 0, KEY_QUERY_VALUE, &hRegKey) == ERROR_SUCCESS)
+        {
+            RegQueryValueExA(hRegKey, "InstallPath", NULL, NULL, (BYTE*)Steam_path, &Size);
+		    RegCloseKey(hRegKey);
+        }
+
+        // Add the active process to the registry.
+        if (RegOpenKeyExA(HKEY_CURRENT_USER, "Software\\Valve\\Steam\\ActiveProcess", 0, KEY_QUERY_VALUE, &hRegKey) == ERROR_SUCCESS)
+        {
+            DWORD UserID = Steam_UserID & 0xffffffff;
+            DWORD ProcessID = GetCurrentProcessId();
+            const char *Clientpath32 = va("%s\\steamclient.dll", Steam_path);
+            const char *Clientpath64 = va("%s\\steamclient64.dll", Steam_path);
+
+            RegSetValueExA(hRegKey, "ActiveUser", NULL, REG_DWORD, (LPBYTE)&UserID, sizeof(DWORD));
+            RegSetValueExA(hRegKey, "pid", NULL, REG_DWORD, (LPBYTE)&ProcessID, sizeof(DWORD));
+            RegSetValueExA(hRegKey, "SteamClientDll", NULL, REG_SZ, (LPBYTE)Clientpath32, strlen(Clientpath32) + 1);
+            RegSetValueExA(hRegKey, "SteamClientDll64", NULL, REG_SZ, (LPBYTE)Clientpath64, strlen(Clientpath64) + 1);
+            RegSetValueExA(hRegKey, "Universe", NULL, REG_SZ, (LPBYTE)"Public", strlen("Public") + 1);
+
+            RegCloseKey(hRegKey);
+        }
+
+        // Set the game to active.
+        DWORD dwDisposition;
+        if (RegCreateKeyExA(HKEY_CURRENT_USER, va("Software\\Valve\\Steam\\Apps\\%i", Steam_ApplicationID), 0, NULL, 0,  KEY_WRITE, NULL, &hRegKey, &dwDisposition) == ERROR_SUCCESS)
+        {
+            DWORD Running = TRUE;
+
+            RegSetValueExA(hRegKey, "Installed", NULL, REG_DWORD, (LPBYTE)&Running, sizeof(DWORD));
+            RegSetValueExA(hRegKey, "Running", NULL, REG_DWORD, (LPBYTE)&Running, sizeof(DWORD));
+
+            RegCloseKey(hRegKey);
+        }
+
+        // Load the overlay.
+        SetDllDirectoryA(Steam_path);
+        LoadLibraryA(va("%s\\%s", Steam_path, Gameoverlay));
 #endif
 
         // Initialize the interface manager with the ID.
@@ -199,19 +241,7 @@ extern "C"
     }
     EXPORT_ATTR const char *SteamAPI_GetSteamInstallPath()
     {
-        char *Installpath = new char[MAX_PATH]();
-        unsigned long Size = MAX_PATH;
-
-#ifdef _WIN32
-        HKEY hRegKey;
-        if (RegOpenKeyExA(HKEY_LOCAL_MACHINE, Steamregistry, 0, KEY_QUERY_VALUE, &hRegKey) == ERROR_SUCCESS)
-        {
-            RegQueryValueExA(hRegKey, "InstallPath", NULL, NULL, (BYTE*)Installpath, &Size);
-		    RegCloseKey(hRegKey);
-        }
-#endif
-
-        return Installpath;
+        return Steam_path;
     }
     EXPORT_ATTR bool SteamAPI_RestartAppIfNecessary(uint32_t unOwnAppID)
     {
