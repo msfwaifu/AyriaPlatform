@@ -10,6 +10,7 @@
 #include <chrono>
 #include <Steam\CSteamID.h>
 #include <Configuration\All.h>
+#include <Steam\Steamcallback.h>
 #include <Steam\Interfacemanager.h>
 
 #define Createmethod(Index, Class, Function)    \
@@ -93,12 +94,10 @@ public:
     }
     bool IsAPICallCompleted(uint64_t hSteamAPICall, bool *pbFailed)
     {
-        PrintFunction();
-        return false;
+        return SteamCallback::CallComplete(hSteamAPICall);
     }
     uint32_t GetAPICallFailureReason(uint64_t hSteamAPICall)
     {
-        PrintFunction();
         return 0;
     }
     bool GetAPICallResult(uint64_t hSteamAPICall, void *pCallback, int cubCallback, int iCallbackExpected, bool *pbFailed)

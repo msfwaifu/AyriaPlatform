@@ -68,4 +68,7 @@ public:
 
     // Get the name for debugging.
     static const char *GetCallbackName(int32_t ID);
+
+    // Check if processing.
+    static bool CallComplete(uint64_t call);
 };

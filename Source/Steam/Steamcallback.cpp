@@ -111,6 +111,20 @@ void SteamCallback::RunCallbacks()
     Threadsafe.unlock();
 }
 
+bool SteamCallback::CallComplete(uint64_t call)
+{
+    bool Result = false;
+
+    Threadsafe.lock();
+    {
+        if (_Calls.find(call) != _Calls.end())
+            Result = _Calls.find(call)->second;
+    }
+    Threadsafe.unlock();
+
+    return Result;
+}
+
 static std::unordered_map<uint32_t, char *> CallbackNames;
 void BuildCallbackMap();
 const char *SteamCallback::GetCallbackName(int32_t ID)
