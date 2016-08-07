@@ -107,7 +107,7 @@ public:
     }
     void RunFrame()
     {
-        PrintFunction();
+        SteamCallback::RunCallbacks();
     }
     uint32_t GetIPCCallCount()
     {
