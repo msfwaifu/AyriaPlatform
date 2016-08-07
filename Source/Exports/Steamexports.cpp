@@ -10,6 +10,16 @@
 #include <Steam\Steamcallback.h>
 #include <Steam\Interfacemanager.h>
 
+// Registry and environment.
+#ifdef _WIN32
+#include <Windows.h>
+#endif
+
+// Steam components.
+constexpr const char *Gameoverlay = sizeof(void *) == 8 ? "gameoverlayrenderer64.dll" : "gameoverlayrenderer.dll";
+constexpr const char *Steamclient = sizeof(void *) == 8 ? "steamclient64.dll" : "steamclient.dll";
+constexpr const char *Steamregistry = sizeof(void *) == 8 ? "Software\\Wow6432Node\\Valve\\Steam" : "Software\\Valve\\Steam";
+
 extern "C"
 {
     // Interface access.
@@ -166,6 +176,12 @@ extern "C"
             exit(0xDEAD);
         }
 
+#ifdef _WIN32
+        // Set the environment variable for games that use it.
+        SetEnvironmentVariableA("SteamAppId", va("%lu", Steam_ApplicationID));
+	    SetEnvironmentVariableA("SteamGameId", va("%llu", Steam_ApplicationID & 0xFFFFFF));
+#endif
+
         // Initialize the interface manager with the ID.
         Interfacemanager::Initialize(Steam_ApplicationID);
         return true;
@@ -183,13 +199,19 @@ extern "C"
     }
     EXPORT_ATTR const char *SteamAPI_GetSteamInstallPath()
     {
-        /* 
-            TODO(Convery):
-            Implement a portable way to get the install path.
-        */
+        char *Installpath = new char[MAX_PATH]();
+        unsigned long Size = MAX_PATH;
 
-        PrintFunction();
-        return "";
+#ifdef _WIN32
+        HKEY hRegKey;
+        if (RegOpenKeyExA(HKEY_LOCAL_MACHINE, Steamregistry, 0, KEY_QUERY_VALUE, &hRegKey) == ERROR_SUCCESS)
+        {
+            RegQueryValueExA(hRegKey, "InstallPath", NULL, NULL, (BYTE*)Installpath, &Size);
+		    RegCloseKey(hRegKey);
+        }
+#endif
+
+        return Installpath;
     }
     EXPORT_ATTR bool SteamAPI_RestartAppIfNecessary(uint32_t unOwnAppID)
     {
