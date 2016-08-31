@@ -1330,6 +1330,12 @@ struct Steamfriendsloader
         Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends013", new SteamFriends013);
         Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends014", new SteamFriends014);
         Interfacemanager::Addinterface(STEAM_FRIENDS, "SteamFriends015", new SteamFriends015);
+
+        Loadfriendcache();
+        if (!Steam_Offline)
+        {
+            Updatefriendcache();
+        }
     }
 };
 static Steamfriendsloader Interfaceloader;
