@@ -16,6 +16,54 @@
 auto Temp ##Function = &Class::Function;        \
 Methods[Index] = *(void **)&Temp ##Function;
 
+// Local cache of friends for offline mode.
+struct Steamfriend
+{
+    bool Online;
+    uint64_t XUID;
+    std::string Name;
+};
+std::vector<Steamfriend> Friendcache;
+void Loadfriendcache()
+{
+    CSVManager CSVReader;
+
+    if (CSVReader.Readfile("./Plugins/SteamFriendcache.csv"))
+    {
+        for (size_t Row = 0; ; ++Row)
+        {
+            // End of buffer check.
+            if (CSVReader.Getvalue(Row, 0).size() == 0)
+                break;
+
+            // Create a new object from the data.
+            Steamfriend *Local = new Steamfriend();
+            Local->XUID = strtoull(CSVReader.Getvalue(Row, 0).c_str(), nullptr, 16);
+            Local->Name = CSVReader.Getvalue(Row, 1);
+            Friendcache.push_back(*Local);
+        }
+    }
+}
+void Savefriendcahce()
+{
+    CSVManager CSVWriter;
+
+    for each (auto Friend in Friendcache)
+    {
+        CSVWriter.Addrow({ va_small("%llx", Friend.XUID), Friend.Name });
+    }
+
+    if (Friendcache.size())
+        CSVWriter.Writefile("./Plugins/SteamFriendcache.csv");
+}
+void Updatefriendcache()
+{
+    /*
+        TODO(Convery):
+        Connect to the AyriaClient and request this data.
+    */
+}
+
 #pragma region Methods
 class SteamFriends
 {
@@ -41,26 +89,75 @@ public:
     bool AddFriend(CSteamID steamIDFriend)
     {
         PrintFunction();
-        return false;
+
+        // Add to local cache.
+        Friendcache.push_back({ false, steamIDFriend.ConvertToUint64(), "unknown" });
+
+        /*
+            TODO(Convery):
+            Notify the AyriaClient instance that we've made a new friend.
+        */
+
+        return true;
     }
     bool RemoveFriend(CSteamID steamIDFriend)
     {
         PrintFunction();
-        return false;
+
+        // Find and remove the friend.
+        for (auto Iterator = Friendcache.begin(); Iterator != Friendcache.end(); ++Iterator)
+        {
+            if (Iterator->XUID == steamIDFriend.ConvertToUint64())
+            {
+                Friendcache.erase(Iterator);
+                break;
+            }
+        }
+
+        /*
+            TODO(Convery):
+            Notify the AyriaClient instance that we've lost a friend.
+        */
+
+        return true;
     }
     bool HasFriend0(CSteamID steamIDFriend)
     {
         PrintFunction();
+
+        for (auto Iterator = Friendcache.begin(); Iterator != Friendcache.end(); ++Iterator)
+        {
+            if (Iterator->XUID == steamIDFriend.ConvertToUint64())
+            {
+                return true;
+            }
+        }
+
         return false;
     }
     uint32_t GetFriendRelationship(CSteamID steamIDFriend)
     {
         PrintFunction();
-        return 0;
+
+        // EFriendRelationship::Friend
+        return 3;
     }
     uint32_t GetFriendPersonaState(CSteamID steamIDFriend)
     {
         PrintFunction();
+
+        for (auto Iterator = Friendcache.begin(); Iterator != Friendcache.end(); ++Iterator)
+        {
+            if (Iterator->XUID == steamIDFriend.ConvertToUint64())
+            {
+                if (Iterator->Online)
+                    return 1;
+                else
+                    return 0;
+            }
+        }
+
+        // EPersonaState::Offline
         return 0;
     }
     bool Deprecated_GetFriendGamePlayed(CSteamID steamIDFriend, int32_t *pnGameID, uint32_t *punGameIP, uint16_t *pusGamePort)
@@ -71,7 +168,15 @@ public:
     const char *GetFriendPersonaName(CSteamID steamIDFriend)
     {
         PrintFunction();
-        return "Friend";
+        for (auto Iterator = Friendcache.begin(); Iterator != Friendcache.end(); ++Iterator)
+        {
+            if (Iterator->XUID == steamIDFriend.ConvertToUint64())
+            {
+                return Iterator->Name.c_str();
+            }
+        }
+
+        return "unknown";
     }
     uint32_t AddFriendByName(const char *pchEmailOrAccountName)
     {
@@ -80,12 +185,12 @@ public:
     }
     int GetFriendCount0()
     {
-        return 0;
+        return Friendcache.size();
     }
     CSteamID GetFriendByIndex0(int iFriend)
     {
         PrintFunction();
-        return CSteamID(Steam_UserID);
+        return CSteamID(Friendcache[iFriend].XUID);
     }
     void SendMsgToFriend0(CSteamID steamIDFriend, uint32_t eFriendMsgType, const char *pchMsgBody)
     {
@@ -150,12 +255,12 @@ public:
     }
     int GetFriendCount1(uint32_t iFriendFlags)
     {
-        return 0;
+        return Friendcache.size();
     }
     CSteamID GetFriendByIndex1(int iFriend, uint32_t iFriendFlags)
     {
         PrintFunction();
-        return CSteamID(Steam_UserID);
+        return CSteamID(Friendcache[iFriend].XUID);
     }
     bool GetFriendGamePlayed1(CSteamID steamIDFriend, uint64_t *pulGameID, uint32_t *punGameIP, uint16_t *pusGamePort, uint16_t *pusQueryPort)
     {
@@ -165,6 +270,15 @@ public:
     bool HasFriend1(CSteamID steamIDFriend, uint32_t iFriendFlags)
     {
         PrintFunction();
+
+        for (auto Iterator = Friendcache.begin(); Iterator != Friendcache.end(); ++Iterator)
+        {
+            if (Iterator->XUID == steamIDFriend.ConvertToUint64())
+            {
+                return true;
+            }
+        }
+
         return false;
     }
     bool InviteFriendByEmail1(const char *emailAddr)
@@ -480,6 +594,7 @@ public:
     uint64_t SetPersonaName2(const char *pchPersonaName)
     {
         PrintFunction();
+        strcpy_s(Steam_Username, 16, pchPersonaName);
         return 0;
     }
     int GetFriendSteamLevel(CSteamID steamIDFriend)
