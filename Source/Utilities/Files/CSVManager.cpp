@@ -32,7 +32,6 @@ char *strsep(char **String, const char *Delimiter)
 }
 #endif
 
-std::vector<std::vector<std::string>> CSVManager::EntryBuffer;
 bool CSVManager::Readfile(const char *Filepath)
 {
     FILE *Filehandle{ nullptr };
@@ -44,6 +43,9 @@ bool CSVManager::Readfile(const char *Filepath)
     // Ensure that the file exists.
     Filehandle = fopen(Filepath, "r");
     if (!Filehandle) return false;
+
+    // Clear the old buffer.
+    EntryBuffer.clear();
 
     // For each string in the file.
     while (fgets(InputString, 1024, Filehandle))

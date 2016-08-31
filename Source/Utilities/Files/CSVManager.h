@@ -10,10 +10,12 @@
 #include <string>
 #include <vector>
 
-struct CSVManager
+class CSVManager
 {
-    static bool Readfile(const char *Filepath);
-    static bool Writefile(const char *Filepath);
-    static std::string Getvalue(size_t Row, size_t Col);
-    static std::vector<std::vector<std::string>> EntryBuffer;
+    std::vector<std::vector<std::string>> EntryBuffer;
+
+public:
+    bool Readfile(const char *Filepath);
+    bool Writefile(const char *Filepath);
+    std::string Getvalue(size_t Row, size_t Col);
 };
