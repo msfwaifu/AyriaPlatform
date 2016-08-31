@@ -133,3 +133,7 @@ std::string CSVManager::Getvalue(size_t Row, size_t Col)
 
     return EntryBuffer[Row][Col];
 }
+void CSVManager::Addrow(std::vector<std::string> Values)
+{
+    EntryBuffer.push_back(Values);
+}

@@ -18,4 +18,5 @@ public:
     bool Readfile(const char *Filepath);
     bool Writefile(const char *Filepath);
     std::string Getvalue(size_t Row, size_t Col);
+    void Addrow(std::vector<std::string> Values);
 };
