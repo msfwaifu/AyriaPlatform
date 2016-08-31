@@ -185,7 +185,7 @@ public:
     }
     int GetFriendCount0()
     {
-        return Friendcache.size();
+        return (int)Friendcache.size();
     }
     CSteamID GetFriendByIndex0(int iFriend)
     {
@@ -255,7 +255,7 @@ public:
     }
     int GetFriendCount1(uint32_t iFriendFlags)
     {
-        return Friendcache.size();
+        return (int)Friendcache.size();
     }
     CSteamID GetFriendByIndex1(int iFriend, uint32_t iFriendFlags)
     {

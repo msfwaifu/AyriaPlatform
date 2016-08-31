@@ -200,9 +200,9 @@ extern "C"
 
             RegSetValueExA(hRegKey, "ActiveUser", NULL, REG_DWORD, (LPBYTE)&UserID, sizeof(DWORD));
             RegSetValueExA(hRegKey, "pid", NULL, REG_DWORD, (LPBYTE)&ProcessID, sizeof(DWORD));
-            RegSetValueExA(hRegKey, "SteamClientDll", NULL, REG_SZ, (LPBYTE)Clientpath32, strlen(Clientpath32) + 1);
-            RegSetValueExA(hRegKey, "SteamClientDll64", NULL, REG_SZ, (LPBYTE)Clientpath64, strlen(Clientpath64) + 1);
-            RegSetValueExA(hRegKey, "Universe", NULL, REG_SZ, (LPBYTE)"Public", strlen("Public") + 1);
+            RegSetValueExA(hRegKey, "SteamClientDll", NULL, REG_SZ, (LPBYTE)Clientpath32, (DWORD)std::strlen(Clientpath32) + 1);
+            RegSetValueExA(hRegKey, "SteamClientDll64", NULL, REG_SZ, (LPBYTE)Clientpath64, (DWORD)std::strlen(Clientpath64) + 1);
+            RegSetValueExA(hRegKey, "Universe", NULL, REG_SZ, (LPBYTE)"Public", (DWORD)std::strlen("Public") + 1);
 
             RegCloseKey(hRegKey);
         }

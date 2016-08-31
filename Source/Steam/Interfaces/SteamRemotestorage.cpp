@@ -15,6 +15,8 @@
 auto Temp ##Function = &Class::Function;        \
 Methods[Index] = *(void **)&Temp ##Function;
 
+constexpr const char *Storagedir = "./Plugins/Steamstorage/";
+
 #pragma region Methods
 class SteamRemotestorage
 {
@@ -22,15 +24,23 @@ public:
 
     bool FileRead0(const char *filename, void *buffer, int size)
     {
-        return true;
+        std::string Filebuffer;
+        if (Filesystem::Readfile(va("%s%s", Storagedir, filename), &Filebuffer))
+        {
+            std::memcpy(buffer, Filebuffer.data(), std::min(size, (int)Filebuffer.size()));
+            return true;
+        }
+
+        
+        return false;
     }
     bool FileExists(const char *filename)
     {
-        return true;;
+        return Filesystem::Fileexists(va("%s%s", Storagedir, filename));
     }
     bool FileDelete(const char *filename)
     {
-        return true;;
+        return 0 == std::remove(va("%s%s", Storagedir, filename));
     }
     const char *GetFileNameAndSize(int index, int *size)
     {
@@ -38,19 +48,25 @@ public:
     }
     bool GetQuota(int *current, int *maximum)
     {
-        return true;;
+        return false;
     }
     bool FileWrite(const char *pchFile, const void *pvData, int32_t cubData)
     {
-        return true;;
+        return Filesystem::Writefile(va("%s%s", Storagedir, pchFile), pvData, cubData, false);
     }
     int32_t GetFileSize(const char *pchFile)
     {
-        return 0;
+        return (int32_t)Filesystem::Filesize(va("%s%s", Storagedir, pchFile));
     }
     int32_t FileRead1(const char *pchFile, void *pvData, int32_t cubDataToRead)
     {
-        return 0;
+        std::string Filebuffer;
+        if (Filesystem::Readfile(va("%s%s", Storagedir, pchFile), &Filebuffer))
+        {
+            std::memcpy(pvData, Filebuffer.data(), std::min(cubDataToRead, (int32_t)Filebuffer.size()));
+        }
+
+        return std::min(cubDataToRead, (int32_t)Filebuffer.size());
     }
     int32_t GetFileCount()
     {
@@ -66,15 +82,15 @@ public:
     }
     bool IsCloudEnabledForAccount()
     {
-        return 0;
+        return true;
     }
     bool IsCloudEnabledThisApp()
     {
-        return 0;
+        return true;
     }
     bool SetCloudEnabledThisApp(bool bEnable)
     {
-        return 0;
+        return true;
     }
     uint64_t UGCDownload0(uint32_t hContent)
     {
@@ -277,7 +293,6 @@ public:
     {
         return 0;
     }
-
 
 };
 #pragma endregion
@@ -775,6 +790,9 @@ struct Steamremotestorageloader
         Interfacemanager::Addinterface(STEAM_REMOTESTORAGE, "SteamRemotestorage010", new SteamRemotestorage010);
         Interfacemanager::Addinterface(STEAM_REMOTESTORAGE, "SteamRemotestorage011", new SteamRemotestorage011);
         Interfacemanager::Addinterface(STEAM_REMOTESTORAGE, "SteamRemotestorage012", new SteamRemotestorage012);
+
+        // Create a directory for stats and UGC.
+        Filesystem::Createdir(Storagedir);
     }
 };
 static Steamremotestorageloader Interfaceloader;
