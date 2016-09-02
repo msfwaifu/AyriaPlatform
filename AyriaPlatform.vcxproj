@@ -217,6 +217,7 @@
     <ClCompile Include="Source\Steam\Interfaces\SteamMatchmaking.cpp" />
     <ClCompile Include="Source\Steam\Interfaces\SteamNetworking.cpp" />
     <ClCompile Include="Source\Steam\Interfaces\SteamRemotestorage.cpp" />
+    <ClCompile Include="Source\Steam\Interfaces\SteamScreenshots.cpp" />
     <ClCompile Include="Source\Steam\Interfaces\SteamUser.cpp" />
     <ClCompile Include="Source\Steam\Interfaces\SteamUserstats.cpp" />
     <ClCompile Include="Source\Steam\Interfaces\SteamUtilities.cpp" />

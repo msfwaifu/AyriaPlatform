@@ -421,3 +421,13 @@ struct SteamRemotestorage012 : public Fakeclass
 {
     SteamRemotestorage012();
 };
+
+// Screenshots.
+struct SteamScreenshots001 : public Fakeclass
+{
+    SteamScreenshots001();
+};
+struct SteamScreenshots002 : public Fakeclass
+{
+    SteamScreenshots002();
+};
