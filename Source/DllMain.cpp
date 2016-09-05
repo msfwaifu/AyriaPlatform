@@ -7,7 +7,6 @@
 */
 
 #include <Configuration\All.h>
-#include <iostream>
 
 #ifdef _WIN32
 #include <Windows.h>
@@ -26,12 +25,6 @@ BOOLEAN WINAPI DllMain(HINSTANCE hDllHandle, DWORD nReason, LPVOID Reserved)
             freopen("CONIN$", "r", stdin);
             freopen("CONOUT$", "w", stdout);
             freopen("CONOUT$", "w", stderr);
-            std::wcout.clear();
-            std::cout.clear();
-            std::wcerr.clear();
-            std::cerr.clear();
-            std::wcin.clear();
-            std::cin.clear();
         }
 
         // Clean the logfile so we only save this session.
