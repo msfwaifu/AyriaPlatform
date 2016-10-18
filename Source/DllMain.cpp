@@ -30,7 +30,12 @@ BOOLEAN WINAPI DllMain(HINSTANCE hDllHandle, DWORD nReason, LPVOID Reserved)
         // Clean the logfile so we only save this session.
         DeleteLogfile();
 
-        // Load the plugins if it's not already loaded.
+        /*
+            NOTE(Convery):
+            The users will have the bootstrapper injected via the desktop
+            client but that's not useful for debugging. As such the dev
+            needs to copy the NativeBootstrap32/64 to the gamefolder.
+        */
         LoadLibraryA("Bootstrap"); 
         break;
     }

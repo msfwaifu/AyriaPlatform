@@ -87,7 +87,7 @@ void *Interfacemanager::Fetchinterface(const char *Name)
     auto Result = Interfacenames.find(Name);
     if (Result != Interfacenames.end()) return Result->second;
 
-    DebugPrint(va_small("%s had no interface with name \"%s\"", __FUNCTION__, Name));
+    DebugPrint(va_small("%s had no interface with the name \"%s\"", __FUNCTION__, Name));
     return nullptr;
 }
 void *Interfacemanager::Fetchinterface(eInterfaceType Type)
@@ -102,7 +102,7 @@ void *Interfacemanager::Fetchinterface(eInterfaceType Type)
             return Iterator->second;
     }
 
-    DebugPrint(va_small("%s had no interface for type %i", __FUNCTION__, Type));
+    DebugPrint(va_small("%s had no interface for the type %i", __FUNCTION__, Type));
     return nullptr;
 }
 void Interfacemanager::Addinterface(eInterfaceType Type, const char *Name, void *Interface)
