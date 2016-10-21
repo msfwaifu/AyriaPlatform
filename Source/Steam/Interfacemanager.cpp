@@ -26,7 +26,7 @@ void Interfacemanager::Initialize(uint32_t ApplicationID)
 {
     // Load the active interfaces from a CSV file.
     CSVManager CSVReader;
-    if (CSVReader.Readfile("./Plugins/SteamInterfaces.csv"))
+    if (CSVReader.Readfile("./Plugins/AyriaPlatform/SteamInterfaces.csv"))
     {
         for (size_t Row = 0; ; ++Row)
         {
@@ -79,7 +79,7 @@ void Interfacemanager::Initialize(uint32_t ApplicationID)
     }
     else
     {
-        DebugPrint("Missing file: \"./Plugins/SteamInterfaces.csv\", the program is unlikely to function properly.");
+        DebugPrint("Missing file: \"./Plugins/AyriaPlatform/SteamInterfaces.csv\", the program is unlikely to function properly.");
     }
 }
 void *Interfacemanager::Fetchinterface(const char *Name)

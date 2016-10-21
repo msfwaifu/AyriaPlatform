@@ -15,7 +15,7 @@
 auto Temp ##Function = &Class::Function;        \
 Methods[Index] = *(void **)&Temp ##Function;
 
-constexpr const char *Storagedir = "./Plugins/Steamstorage/";
+constexpr const char *Storagedir = "./Plugins/AyriaPlatform/Steamstorage/";
 
 #pragma region Methods
 class SteamRemotestorage

@@ -28,7 +28,7 @@ void Loadfriendcache()
 {
     CSVManager CSVReader;
 
-    if (CSVReader.Readfile("./Plugins/SteamFriendcache.csv"))
+    if (CSVReader.Readfile("./Plugins/AyriaPlatform/SteamFriendcache.csv"))
     {
         for (size_t Row = 0; ; ++Row)
         {
@@ -54,7 +54,7 @@ void Savefriendcahce()
     }
 
     if (Friendcache.size())
-        CSVWriter.Writefile("./Plugins/SteamFriendcache.csv");
+        CSVWriter.Writefile("./Plugins/AyriaPlatform/SteamFriendcache.csv");
 }
 void Updatefriendcache()
 {
